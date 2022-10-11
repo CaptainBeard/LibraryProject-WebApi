@@ -34,6 +34,7 @@ namespace library_project
         {
             using var cmd = Db.Connection.CreateCommand();
             cmd.CommandText = @"SELECT * FROM user ;";
+            var result=await ReturnAllAsync(await cmd.ExecuteReaderAsync());
             return await ReturnAllAsync(await cmd.ExecuteReaderAsync());
         }
 
@@ -91,7 +92,8 @@ namespace library_project
         {
             using var cmd = Db.Connection.CreateCommand();
             cmd.CommandText = @"UPDATE user SET username = @username, password = @password, firstname = @firstname, lastname = @lastname, 
-            phone = @phone, streetaddress = @streetaddress, postalcode = @postalcode, image = @image;";
+            phone = @phone, streetaddress = @streetaddress, postalcode = @postalcode, image = @image
+            WHERE id_user = @id_user;";
             BindParams(cmd);
             BindId(cmd);
             Console.WriteLine("id" + id_user);

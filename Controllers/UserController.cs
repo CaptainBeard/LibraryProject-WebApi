@@ -14,6 +14,7 @@ namespace library_project.Controllers
         }
 
         // GET api/User
+        [BasicAuthorization]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -56,12 +57,9 @@ namespace library_project.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutOne(int id, [FromBody] User body)
         {
-            Console.WriteLine("update called");
             await Db.Connection.OpenAsync();
-            Console.WriteLine(body);
             var query = new User(Db);
             body.password = BCrypt.Net.BCrypt.HashPassword(body.password);
-    
             var result = await query.FindOneAsync(id);
             result.username = body.username;
             result.password = body.password;

@@ -9,7 +9,8 @@ namespace library_project
 
         public Database(string connectionString)
         {
-            Connection = new MySqlConnection(connectionString);
+            //Connection = new MySqlConnection(connectionString);
+            Connection = new MySqlConnection(System.Environment.GetEnvironmentVariable("DATABASE"));
         }
 
         public void Dispose() => Connection.Dispose();
