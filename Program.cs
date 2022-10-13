@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.Features;
+using Microsoft.Extensions.FileProviders;
 using library_project;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -40,6 +42,13 @@ app.UseCors(builder =>
     builder.AllowAnyOrigin()
         .AllowAnyMethod()
         .AllowAnyHeader();
+});
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+           Path.Combine(builder.Environment.ContentRootPath, "user_avatars/images")),
+    RequestPath = "/images"
 });
 
 app.UseHttpsRedirection();
