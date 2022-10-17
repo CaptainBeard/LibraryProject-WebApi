@@ -34,11 +34,7 @@ namespace library_project.Controllers
                 // authentication successful
                 return new OkObjectResult(true);
             }
-            
         }
-
-    
-
         public Database Db { get; }
     }
 }

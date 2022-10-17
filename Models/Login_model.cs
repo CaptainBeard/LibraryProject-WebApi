@@ -52,8 +52,30 @@ namespace library_project
                 }
             }
 
-            return loginUser.password;
+        return loginUser.password;
         }
+
+
+
+        // private void BindId(MySqlCommand cmd)
+        // {
+        //     cmd.Parameters.Add(new MySqlParameter
+        //     {
+        //         ParameterName = "@username",
+        //         DbType = DbType.Int32,
+        //         Value = username,
+        //     });
+        // }
+
+        // private void BindParams(MySqlCommand cmd)
+        // {
+        //     cmd.Parameters.Add(new MySqlParameter
+        //     {
+        //         ParameterName = "@password",
+        //         DbType = DbType.String,
+        //         Value = password,
+        //     });
+        // }
         
     
     }

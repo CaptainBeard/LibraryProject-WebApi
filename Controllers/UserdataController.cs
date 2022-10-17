@@ -32,20 +32,36 @@ namespace library_project.Controllers
         {
             await Db.Connection.OpenAsync();
             var query = new Userdata(Db);
-            body.password = BCrypt.Net.BCrypt.HashPassword(body.password);
             var result = await query.FindOneAsync(username);
-            result.username = body.username;
-            result.password = body.password;
-            result.identity = body.identity;
             result.firstname = body.firstname;
             result.lastname = body.lastname;
             result.phone = body.phone;
             result.streetaddress = body.streetaddress;
             result.postalcode = body.postalcode;
-            result.image = body.image;
             if (result is null)
                 return new NotFoundResult();
             int updateTest = await result.UpdateAsync();
+            if (updateTest == 0)
+            {
+                return new BadRequestResult();
+            }
+            else
+            {
+                return new OkObjectResult(updateTest);
+            }
+        }
+
+                // PUT api/User/5
+        [HttpPut("Password/{username}")]
+        public async Task<IActionResult> ChangePassword(string username, [FromBody] Userdata body)
+        {
+            await Db.Connection.OpenAsync();
+            var query = new Userdata(Db);
+            var result = await query.FindOneAsync(username);
+            result.password = BCrypt.Net.BCrypt.HashPassword(body.password);
+            if (result is null)
+                return new NotFoundResult();
+            int updateTest = await result.ChangePassword();
             if (updateTest == 0)
             {
                 return new BadRequestResult();

@@ -64,9 +64,22 @@ namespace library_project
         public async Task<int> UpdateAsync()
         {
             using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"UPDATE user SET username = @username, password = @password, firstname = @firstname, lastname = @lastname, 
-            phone = @phone, streetaddress = @streetaddress, postalcode = @postalcode, image = @image
+            cmd.CommandText = @"UPDATE user SET firstname = @firstname, lastname = @lastname, 
+            phone = @phone, streetaddress = @streetaddress, postalcode = @postalcode
             WHERE username = @username;";
+            BindParams(cmd);
+            BindId(cmd);
+            //Console.WriteLine("username: " + username);
+            int returnValue = await cmd.ExecuteNonQueryAsync();
+            return returnValue;
+        }
+        public async Task<int> ChangePassword()
+        {
+            using var cmd = Db.Connection.CreateCommand();
+            cmd.CommandText = @"UPDATE user SET password = @password
+            WHERE username = @username;";
+            BindParams(cmd);
+            BindId(cmd);
             Console.WriteLine("username: " + username);
             int returnValue = await cmd.ExecuteNonQueryAsync();
             return returnValue;
@@ -76,6 +89,7 @@ namespace library_project
         {
             using var cmd = Db.Connection.CreateCommand();
             cmd.CommandText = @"DELETE FROM user WHERE username = @username;";
+            BindId(cmd);
             await cmd.ExecuteNonQueryAsync();
         }
 
@@ -103,6 +117,54 @@ namespace library_project
                 }
             }
             return posts;
+        }
+        private void BindId(MySqlCommand cmd)
+        {
+            cmd.Parameters.Add(new MySqlParameter
+            {
+                ParameterName = "@username",
+                DbType = DbType.String,
+                Value = username,
+            });
+        }
+        private void BindParams(MySqlCommand cmd)
+        {
+            cmd.Parameters.Add(new MySqlParameter
+            {
+                ParameterName = "@password",
+                DbType = DbType.String,
+                Value = password,
+            });
+            cmd.Parameters.Add(new MySqlParameter
+            {
+                ParameterName = "@firstname",
+                DbType = DbType.String,
+                Value = firstname,
+            });
+            cmd.Parameters.Add(new MySqlParameter
+            {
+                ParameterName = "@lastname",
+                DbType = DbType.String,
+                Value = lastname,
+            });
+            cmd.Parameters.Add(new MySqlParameter
+            {
+                ParameterName = "@phone",
+                DbType = DbType.String,
+                Value = phone,
+            });
+            cmd.Parameters.Add(new MySqlParameter
+            {
+                ParameterName = "@streetaddress",
+                DbType = DbType.String,
+                Value = streetaddress,
+            });
+            cmd.Parameters.Add(new MySqlParameter
+            {
+                ParameterName = "@postalcode",
+                DbType = DbType.String,
+                Value = postalcode,
+            });
         }
     }
 }
