@@ -14,11 +14,11 @@ namespace library_project.Controllers
         public IActionResult Upload()
         {
             try
-            {
+            { 
                 var file = Request.Form.Files[0];
+                Console.WriteLine(file);
                 if (file.Length > 0)
                 {
-                    
                     var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
                     string format = fileName.Substring(fileName.Length -4);
                     string newName = fileName.Substring(0, fileName.Length -4);
@@ -28,7 +28,7 @@ namespace library_project.Controllers
                     // Checks if image is less than 5 MB and it's .png or .jpg
                     if (file.Length > 5000000)
                     {
-                        Console.WriteLine("Image is too big. Max size is 3 MB.");
+                        Console.WriteLine("Image is too big. Max size is 5 MB.");
                         return BadRequest();
                     }
                     if (format != ".png" && format != ".jpg")

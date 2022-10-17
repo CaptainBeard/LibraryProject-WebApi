@@ -64,7 +64,7 @@ namespace library_project
         public async Task<int> UpdateAsync()
         {
             using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"UPDATE user SET firstname = @firstname, lastname = @lastname, 
+            cmd.CommandText = @"UPDATE user SET firstname = @firstname, lastname = @lastname,
             phone = @phone, streetaddress = @streetaddress, postalcode = @postalcode
             WHERE username = @username;";
             BindParams(cmd);
@@ -77,6 +77,17 @@ namespace library_project
         {
             using var cmd = Db.Connection.CreateCommand();
             cmd.CommandText = @"UPDATE user SET password = @password
+            WHERE username = @username;";
+            BindParams(cmd);
+            BindId(cmd);
+            Console.WriteLine("username: " + username);
+            int returnValue = await cmd.ExecuteNonQueryAsync();
+            return returnValue;
+        }
+        public async Task<int> ChangeImage()
+        {
+            using var cmd = Db.Connection.CreateCommand();
+            cmd.CommandText = @"UPDATE user SET image = @image
             WHERE username = @username;";
             BindParams(cmd);
             BindId(cmd);
@@ -164,6 +175,12 @@ namespace library_project
                 ParameterName = "@postalcode",
                 DbType = DbType.String,
                 Value = postalcode,
+            });
+            cmd.Parameters.Add(new MySqlParameter
+            {
+                ParameterName = "@image",
+                DbType = DbType.String,
+                Value = image,
             });
         }
     }

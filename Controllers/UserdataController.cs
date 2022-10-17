@@ -51,7 +51,7 @@ namespace library_project.Controllers
             }
         }
 
-                // PUT api/User/5
+        // PUT api/Password/5
         [HttpPut("Password/{username}")]
         public async Task<IActionResult> ChangePassword(string username, [FromBody] Userdata body)
         {
@@ -62,6 +62,27 @@ namespace library_project.Controllers
             if (result is null)
                 return new NotFoundResult();
             int updateTest = await result.ChangePassword();
+            if (updateTest == 0)
+            {
+                return new BadRequestResult();
+            }
+            else
+            {
+                return new OkObjectResult(updateTest);
+            }
+        }
+
+                        // PUT api/Password/5
+        [HttpPut("Image/{username}")]
+        public async Task<IActionResult> ChangeImage(string username, [FromBody] Userdata body)
+        {
+            await Db.Connection.OpenAsync();
+            var query = new Userdata(Db);
+            var result = await query.FindOneAsync(username);
+            result.image = body.image;
+            if (result is null)
+                return new NotFoundResult();
+            int updateTest = await result.ChangeImage();
             if (updateTest == 0)
             {
                 return new BadRequestResult();
