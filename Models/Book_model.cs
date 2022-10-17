@@ -14,8 +14,6 @@ namespace library_project
         public string language { get; set; }
         public int year { get; set; }
         public string isbn { get; set; }
-        public string image { get; set; }
-
 
         internal Database Db { get; set; }
 
@@ -108,7 +106,6 @@ namespace library_project
                         language = reader.GetString(3),
                         year = reader.GetInt32(4),
                         isbn = reader.GetString(5),
-                        image = reader.GetString(6)
                     };
                     posts.Add(post);
                 }
@@ -157,12 +154,6 @@ namespace library_project
                 ParameterName = "@isbn",
                 DbType = DbType.String,
                 Value = isbn,
-            });
-                        cmd.Parameters.Add(new MySqlParameter
-            {
-                ParameterName = "@image",
-                DbType = DbType.String,
-                Value = image,
             });
         }
     }

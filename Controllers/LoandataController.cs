@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace library_project.Controllers
 {
     [Route("api/[controller]")]
-    public class BookController : ControllerBase
+    public class LoandataController : ControllerBase
     {
-        public BookController(Database db)
+        public LoandataController(Database db)
         {
             Db = db;
         }
@@ -58,7 +58,7 @@ namespace library_project.Controllers
             result.language = body.language;
             result.year = body.year;
             result.isbn = body.isbn;
-
+            
             await result.UpdateAsync();
             return new OkObjectResult(result);
         }
