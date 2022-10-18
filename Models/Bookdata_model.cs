@@ -31,7 +31,7 @@ namespace library_project
             using var cmd = Db.Connection.CreateCommand();
             
             cmd.CommandText = @"SELECT name, author, language, year, isbn,
-            if(strcmp(loan.id_book,'$'), 'Loaned', 'Free') as Status
+            if(strcmp(loan.id_book,'$'), 'Loaned', 'Available') as Status
             from book left join loan on book.id_book = loan.id_book;";
             cmd.Parameters.Add(new MySqlParameter
             {

@@ -54,11 +54,10 @@ namespace library_project
             }
         }
 
-
         public async Task<int> InsertAsync()
         {
             using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"INSERT INTO book (name, author, language, year, isbn, image)
+            cmd.CommandText = @"INSERT INTO book (name, author, language, year, isbn)
             VALUES (@name, @author, @language, @year, @isbn, @image);";
             BindParams(cmd);
             try
@@ -76,7 +75,7 @@ namespace library_project
         public async Task UpdateAsync()
         {
             using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"UPDATE book SET name = @name, author = @author, language = @language, year = @year, isbn = @isbn, image = @image
+            cmd.CommandText = @"UPDATE book SET name = @name, author = @author, language = @language, year = @year, isbn = @isbn
             WHERE id_book = @id_book;";
             BindParams(cmd);
             BindId(cmd);
