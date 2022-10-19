@@ -2,8 +2,8 @@
 
 - MVC-model
 - Language: C#
-- Frontend: .NET 4.8 WPF
-- Backend: .NET 6.0 WebApi
+- Frontend: WPF (.NET Framework 4.8)
+- Backend: WebApi (.NET 6.0)
 - Database: MariaDB on a LAMP-server
 
 This project has a simple database with three tables: users, loans and books.<br>Users connect to the database using a WPF application.
