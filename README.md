@@ -17,12 +17,12 @@ Features:
 - Change profile picture
 
 # EER diagram
-<img src="images/library_project.png">
+<img src=Images/library_project.png>
 # Login screen
-<img src="images/UI_03.png">
+<img src=Images/UI_03.png>
 # User menu
-<img src="images/UI_01.png">
+<img src=Images/UI_01.png>
 # Frontend
-<img src="images/Frontend.png">
+<img src=Images/Frontend.png>
 # Backend
-<img src="images/Backend.png">
+<img src=Images/Backend.png>
