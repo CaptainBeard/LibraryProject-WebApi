@@ -2,7 +2,7 @@
 
 - MVC-model
 - Language: C#
-- Frontend: WPF
+- Frontend: .NET 4.8 WPF
 - Backend: .NET 6.0 WebApi
 - Database: MariaDB on a LAMP-server
 
