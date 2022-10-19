@@ -18,11 +18,15 @@ Features:
 
 # EER diagram
 <img src=Images/library_project.png>
+
 # Login screen
 <img src=Images/UI_03.png>
+
 # User menu
 <img src=Images/UI_01.png>
+
 # Frontend
 <img src=Images/Frontend.png>
+
 # Backend
 <img src=Images/Backend.png>
