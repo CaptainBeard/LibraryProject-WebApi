@@ -1,4 +1,4 @@
-# Library project
+# Library project - Backend
 
 - MVC-model
 - Language: C#

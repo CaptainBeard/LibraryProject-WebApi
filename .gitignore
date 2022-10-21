@@ -4,3 +4,4 @@ bin/
 obj/
 user_avatars/
 .DbEnvironment.cs
+#
