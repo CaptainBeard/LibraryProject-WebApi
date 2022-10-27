@@ -1,9 +1,11 @@
-# Library project - Backend
+# WIP Library project - Backend
+
+Work in progress.
 
 - MVC-model
 - Language: C#
 - Frontend: WPF (.NET Framework 4.8)
-- Backend: WebApi (.NET 6.0)
+- Backend: WebApi (.NET Core 6.0)
 - Database: MariaDB on a LAMP-server
 
 This project has a simple database with three tables: users, loans and books.<br>Users connect to the database using a WPF application.
